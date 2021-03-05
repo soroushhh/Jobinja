@@ -110,5 +110,5 @@ if __name__ == "__main__":
 
             ads["data"].append(data)
 
-    with Path("jobinja_demo.json").open("w", encoding="utf-8") as output_file:
+    with Path("/app/jobinja_demo.json").open("w", encoding="utf-8") as output_file:
         json.dump(ads, output_file, indent=3, ensure_ascii=False)

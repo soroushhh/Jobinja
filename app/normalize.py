@@ -85,5 +85,5 @@ for ad in data["data"]:
 
 if __name__ == "__main__":
     # save the changes in a new json file in the current working dir
-    with Path("mod_jobinja.json").open("w", encoding="utf-8") as output_file:
+    with Path("/app/mod_jobinja.json").open("w", encoding="utf-8") as output_file:
         json.dump(data, output_file, indent=3, ensure_ascii=False)
