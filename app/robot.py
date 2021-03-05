@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 headers = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
 }
-# to store all the scraped data
+# to store all the results
 ads = {"data": []}
 URL_PATH = "https://jobinja.ir/jobs?filters%5Bkeywords%5D%5B0%5D=&filters%5Blocations%5D%5B0%5D=&filters%5Bjob_categories%5D%5B0%5D=%D9%88%D8%A8%D8%8C%E2%80%8C+%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D9%87%E2%80%8C%D9%86%D9%88%DB%8C%D8%B3%DB%8C+%D9%88+%D9%86%D8%B1%D9%85%E2%80%8C%D8%A7%D9%81%D8%B2%D8%A7%D8%B1"
 

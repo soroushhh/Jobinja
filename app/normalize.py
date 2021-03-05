@@ -31,7 +31,7 @@ def normalize_title_string(txt):
 
 
 def normalize_location_string(txt):
-    """To wipe down the unwanted characters
+    """To omit the unwanted characters
     Input Parameter Example ---> 'تهران\n                                                ، تهران'
     Expected output Example ---> ("تهران", "تهران")
     """
