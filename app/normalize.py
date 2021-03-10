@@ -6,7 +6,7 @@ from pathlib import Path
 
 # load json file
 with Path(
-    "C:/Users/SoroushPC/OneDrive/Documents/Projects/Jobinja/app/jobinja_demo.json"
+    "C:/Users/SoroushPC/OneDrive/Documents/Projects/Jobinja/app/data/jobinja_demo.json"
 ).open(mode="r") as f:
     data = json.load(f)
 
@@ -154,7 +154,7 @@ def main():
 
     # save the changes in a new json file in the current working dir
     with Path(
-        "C:/Users/SoroushPC/OneDrive/Documents/Projects/Jobinja/app/mod_jobinja.json"
+        "C:/Users/SoroushPC/OneDrive/Documents/Projects/Jobinja/app/data/mod_jobinja.json"
     ).open("w", encoding="utf-8") as output_file:
         json.dump(data, output_file, indent=3, ensure_ascii=False)
 
