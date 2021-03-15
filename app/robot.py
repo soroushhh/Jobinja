@@ -3,6 +3,8 @@ import requests
 from pathlib import Path
 from bs4 import BeautifulSoup
 
+
+BASE_PATH = Path.cwd()
 headers = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
 }
@@ -110,7 +112,7 @@ if __name__ == "__main__":
 
             ads["data"].append(data)
 
-    with Path(
-        "C:/Users/SoroushPC/OneDrive/Documents/Projects/Jobinja/app/data/jobinja_demo.json"
-    ).open("w", encoding="utf-8") as output_file:
+    with Path(f"{BASE_PATH}/app/data/jobinja_demo.json").open(
+        "w", encoding="utf-8"
+    ) as output_file:
         json.dump(ads, output_file, indent=3, ensure_ascii=False)

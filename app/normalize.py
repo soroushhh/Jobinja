@@ -1,13 +1,11 @@
-import string
 import json
 import re
 from pathlib import Path
 
 
+BASE_PATH = Path.cwd()
 # load json file
-with Path(
-    "C:/Users/SoroushPC/OneDrive/Documents/Projects/Jobinja/app/data/jobinja_demo.json"
-).open(mode="r") as f:
+with Path(f"{BASE_PATH}/app/data/jobinja_demo.json").open(mode="r") as f:
     data = json.load(f)
 
 
@@ -153,9 +151,7 @@ def main():
             #     print(value)
 
     # save the changes in a new json file in the current working dir
-    with Path(
-        "C:/Users/SoroushPC/OneDrive/Documents/Projects/Jobinja/app/data/mod_jobinja.json"
-    ).open("w", encoding="utf-8") as output_file:
+    with Path(f"{BASE_PATH}/app/data/mod_jobinja.json").open("w") as output_file:
         json.dump(data, output_file, indent=3, ensure_ascii=False)
 
 
