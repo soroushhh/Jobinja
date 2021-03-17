@@ -49,15 +49,12 @@ def normalize_salary_string(txt):
     Expected output Example ---> 10000000
     """
     # define senarios with non-numeric characters
-    combos = [
-        ("حقوق توافقی", "Negotiable"),
-        ("حقوق حقوق پایه (وزارت کار)", "Based salary"),
-    ]
-
+    from_char = ["حقوق توافقی", "حقوق حقوق پایه (وزارت کار)"]
+    to_char = ["Negotiable", 2600000]
     # normalize non numeric characters
-    for combo in combos:
-        if txt == combo[0]:
-            txt = combo[1]
+    for old, replacement in zip(from_char, to_char):
+        if txt == old:
+            txt = replacement
             return txt
 
     # senarios that contain numeric characters
@@ -79,7 +76,7 @@ def normalize_gender_string(txt):
     Expected output ---> (Women, Man, Any)"""
 
     from_char = ("زن", "مرد", "مهم نیست")
-    to_char = ("Woman", "Man", "Any")
+    to_char = ("Female", "Male", "Any")
 
     for old, replm in zip(from_char, to_char):
         if txt == old:
@@ -93,7 +90,7 @@ def normalize_colab_type_string(value):
     Different input senarios ---> ("دور کاری", "تمام وقت", "پاره وقت", "کارآموزی")
     Expected output ---> ("Remote", "Full-time", "Part-time", "Intership")"""
 
-    from_char = ("دور کاری", "تمام وقت", "پاره وقت", "کارآموزی")
+    from_char = ("دورکاری", "تمام وقت", "پاره وقت", "کارآموزی")
     to_char = ("Remote", "Full-time", "Part-time", "Intership")
 
     # handle both string and list inputs
@@ -130,13 +127,30 @@ def normalize_experience_string(txt):
     return txt
 
 
+def normalize_skills(values):
+    """ To convert non-array objects into array, remove extra characters from values """
+    # convert non-array objects into list
+    if type(values) == str:
+        values = [values]
+
+    # copy the values object cause we're aboout to mutate its values
+    values = values[:]
+
+    from_char = ["HTML5", "CSS3", "PYTHON3", "#C", "RESTFUL API"]
+    to_char = ["HTML", "CSS", "Python", "C#", "REST API"]
+    for i in range(len(values)):
+        for old, replacement in zip(from_char, to_char):
+            if values[i].upper() == old:
+                values[i] = replacement
+
+    return values
+
+
 def main():
     for ad in data["data"]:
         for key, value in ad.items():
             if key == "title":
                 ad[key] = normalize_title_string(value)
-            elif key == "Type":
-                ad[key] = "Web, Programming and Software"
             elif key == "Provience/City":
                 ad[key] = normalize_location_string(value)
             elif key == "Salary":
@@ -147,8 +161,10 @@ def main():
                 ad[key] = normalize_colab_type_string(value)
             elif key == "Min of year Exp":
                 ad[key] = normalize_experience_string(value)
-            # elif key == "Military Service":
-            #     print(value)
+            elif key == "Skills":
+                ad[key] = normalize_skills(value)
+            elif key == "Type":
+                ad[key] = "Web, Programming and Software"
 
     # save the changes in a new json file in the current working dir
     with Path(f"{BASE_PATH}/app/data/mod_jobinja.json").open("w") as output_file:
